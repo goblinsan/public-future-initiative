@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 
 const contentRoot = path.join(process.cwd(), 'content')
 
-export type ContentType = 'explainers' | 'policy' | 'pilots' | 'actions' | 'glossary'
+export type ContentType = 'explainers' | 'policy' | 'pilots' | 'actions' | 'glossary' | 'timeline'
 
 export interface ParsedContent<T = Record<string, unknown>> {
   slug: string
