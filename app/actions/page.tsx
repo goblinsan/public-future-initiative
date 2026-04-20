@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PageHeader from '@/components/ui/PageHeader'
 import CTAPanel from '@/components/ui/CTAPanel'
 import ActionsDirectory from '@/components/actions/ActionsDirectory'
+import NewsletterSignup from '@/components/ui/NewsletterSignup'
 import { getAllContent } from '@/lib/content'
 import type { Action } from '@/lib/types/content'
 
@@ -116,6 +117,20 @@ export default function ActionsPage() {
           primaryCTA={{ label: 'Register your interest', href: '/get-involved' }}
           secondaryCTA={{ label: 'Browse toolkits', href: '#browse' }}
         />
+      </section>
+
+      {/* Newsletter signup */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
+        <div className="max-w-lg">
+          <p className="eyebrow mb-2">Stay updated</p>
+          <h2 className="font-serif text-display-md text-brand-navy mb-4">
+            Keep up with new actions
+          </h2>
+          <p className="text-body-lg text-slate-600 mb-6">
+            Get notified when new campaigns, events, and volunteering opportunities are added.
+          </p>
+          <NewsletterSignup location="actions-page" />
+        </div>
       </section>
 
       {/* Cross-links */}

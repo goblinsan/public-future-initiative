@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
 const exploreLinks = [
   { href: '/explainers', label: "What's Changing" },
@@ -36,6 +37,13 @@ export default function Footer() {
   return (
     <footer className="bg-brand-navy text-white/70">
       <div className="max-w-page mx-auto px-6 md:px-10 pt-14 pb-10">
+        {/* Newsletter strip */}
+        <div className="border-b border-white/10 pb-10 mb-10">
+          <div className="max-w-md">
+            <NewsletterSignup location="footer" variant="inverted" />
+          </div>
+        </div>
+
         {/* Top section */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}

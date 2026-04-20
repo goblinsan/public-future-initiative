@@ -5,6 +5,7 @@ import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Explainer } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
 import CitationList from '@/components/ui/CitationList'
+import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -72,6 +73,11 @@ export default async function ExplainerPage({ params }: Props) {
 
             {/* Citations / sources */}
             {citations.length > 0 && <CitationList citations={citations} />}
+
+            {/* Inline newsletter signup */}
+            <div className="mt-12 pt-10 border-t border-slate-200">
+              <NewsletterSignup location="explainer-inline" />
+            </div>
 
             <div className="mt-10 pt-8 border-t border-slate-200">
               <Link href="/explainers" className="text-brand-blue hover:underline text-label-sm">
