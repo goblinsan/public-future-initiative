@@ -13,8 +13,8 @@ export interface TimelineBlockProps {
 export default function TimelineBlock({ events }: TimelineBlockProps) {
   return (
     <ol className="relative border-l-2 border-brand-blue/20 space-y-10 pl-8">
-      {events.map((event, i) => (
-        <li key={i} className="relative">
+      {events.map((event) => (
+        <li key={`${event.year}-${event.title}`} className="relative">
           {/* dot */}
           <span className="absolute -left-[2.15rem] top-1 h-4 w-4 rounded-full border-2 border-brand-blue bg-white" />
           <p className="text-label-sm uppercase text-brand-slate mb-1">{event.year}</p>

@@ -11,27 +11,27 @@ export const metadata: Metadata = {
 const principles = [
   {
     title: 'Non-partisan',
-    body: 'We have no political affiliation and accept no funding from political parties or government bodies.',
+    description: 'We have no political affiliation and accept no funding from political parties or government bodies.',
   },
   {
     title: 'Evidence ratings',
-    body: 'Every policy claim is rated: strong, moderate, emerging, or contested. We never flatten uncertainty.',
+    description: 'Every policy claim is rated: strong, moderate, emerging, or contested. We never flatten uncertainty.',
   },
   {
     title: 'Source transparency',
-    body: 'Every factual claim links to its source. We cite peer-reviewed research, official statistics, and recognised expert bodies.',
+    description: 'Every factual claim links to its source. We cite peer-reviewed research, official statistics, and recognised expert bodies.',
   },
   {
     title: 'Corrections',
-    body: 'When we get something wrong, we correct it publicly and log the change. No stealth edits.',
+    description: 'When we get something wrong, we correct it publicly and log the change. No stealth edits.',
   },
   {
     title: 'Open methodology',
-    body: 'Our editorial process, scoring criteria, and content model are publicly documented.',
+    description: 'Our editorial process, scoring criteria, and content model are publicly documented.',
   },
   {
     title: 'Independent funding',
-    body: 'We are funded by individual donors and charitable foundations. Full funder disclosure is published annually.',
+    description: 'We are funded by individual donors and charitable foundations. Full funder disclosure is published annually.',
   },
 ]
 
@@ -45,10 +45,10 @@ export default function TrustCenterPage() {
       />
       <section className="max-w-5xl mx-auto px-6 md:px-10 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {principles.map(({ title, body }) => (
+          {principles.map(({ title, description }) => (
             <div key={title} className="bg-white rounded-card border border-slate-200 shadow-card p-6">
               <h3 className="font-semibold text-heading-sm text-brand-navy mb-2">{title}</h3>
-              <p className="text-body-sm text-slate-600 leading-relaxed">{body}</p>
+              <p className="text-body-sm text-slate-600 leading-relaxed">{description}</p>
             </div>
           ))}
         </div>
