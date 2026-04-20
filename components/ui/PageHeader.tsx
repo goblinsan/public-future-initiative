@@ -1,15 +1,22 @@
 export interface PageHeaderProps {
   title: string
   description?: string
+  eyebrow?: string
 }
 
-export default function PageHeader({ title, description }: PageHeaderProps) {
+export default function PageHeader({ title, description, eyebrow }: PageHeaderProps) {
   return (
-    <div className="bg-blue-700 text-white py-16 px-6">
+    <div className="bg-brand-navy text-white py-16 px-6 md:px-10">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">{title}</h1>
-        {description && <p className="text-blue-100 text-lg max-w-2xl">{description}</p>}
+        {eyebrow && (
+          <p className="eyebrow text-white/60 mb-3">{eyebrow}</p>
+        )}
+        <h1 className="font-serif text-display-md md:text-display-lg mb-4">{title}</h1>
+        {description && (
+          <p className="text-white/80 text-body-lg max-w-2xl">{description}</p>
+        )}
       </div>
     </div>
   )
 }
+

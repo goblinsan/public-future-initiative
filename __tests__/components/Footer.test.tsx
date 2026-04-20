@@ -14,8 +14,17 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument()
   })
 
+  it('renders all support links', () => {
+    render(<Footer />)
+    expect(screen.getByRole('link', { name: /faq/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /corrections/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /partners/i })).toBeInTheDocument()
+  })
+
   it('has accessible footer navigation', () => {
     render(<Footer />)
     expect(screen.getByRole('navigation', { name: /footer navigation/i })).toBeInTheDocument()
   })
 })
+
