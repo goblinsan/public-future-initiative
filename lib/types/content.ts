@@ -72,12 +72,21 @@ export interface Pilot extends ContentBase {
 
 export interface Action extends ContentBase {
   type: 'action'
-  actionType: 'campaign' | 'event' | 'petition' | 'volunteer' | 'other'
+  actionType: 'campaign' | 'event' | 'petition' | 'volunteer' | 'local-action' | 'toolkit' | 'other'
   startDate?: string
   endDate?: string
   location?: string
+  isRemote?: boolean
   url?: string
+  signupUrl?: string
   organizer?: string
+  partner?: string
+  steps?: string[]
+  schedule?: string
+  featured?: boolean
+  relatedExplainers?: string[]
+  relatedPolicy?: string[]
+  relatedPilots?: string[]
 }
 
 export interface GlossaryEntry {
