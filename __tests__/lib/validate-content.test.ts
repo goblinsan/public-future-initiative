@@ -97,6 +97,12 @@ describe('validateExplainer', () => {
     expect(errors.some((e) => e.field === 'publishedAt')).toBe(true)
   })
 
+  it('reports impossible calendar date (roll-over)', () => {
+    const fm = { ...validExplainer, publishedAt: '2024-02-30' }
+    const errors = validateExplainer('test-slug', fm)
+    expect(errors.some((e) => e.field === 'publishedAt')).toBe(true)
+  })
+
   it('reports invalid status', () => {
     const fm = { ...validExplainer, status: 'pending' }
     const errors = validateExplainer('test-slug', fm)

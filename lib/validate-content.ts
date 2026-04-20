@@ -32,7 +32,11 @@ function required(
 
 function isValidDate(value: unknown): boolean {
   if (typeof value !== 'string') return false
-  return /^\d{4}-\d{2}-\d{2}$/.test(value)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const d = new Date(value)
+  if (isNaN(d.getTime())) return false
+  // Ensure the date didn't roll over (e.g. 2024-02-30 → 2024-03-01)
+  return d.toISOString().startsWith(value)
 }
 
 function dateField(
