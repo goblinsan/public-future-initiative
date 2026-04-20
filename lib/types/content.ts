@@ -54,11 +54,20 @@ export interface PolicyOption extends Omit<ContentBase, 'status'> {
 export interface Pilot extends ContentBase {
   type: 'pilot'
   location: string
+  region?: string
+  theme?: string[]
+  partners?: string[]
   startDate?: string
   endDate?: string
   outcome?: 'ongoing' | 'success' | 'partial' | 'failed' | 'cancelled'
+  evidenceStrength?: 'strong' | 'moderate' | 'emerging' | 'contested'
+  limitations?: string[]
+  lessonsLearned?: string[]
+  engagementUrl?: string
+  featured?: boolean
   citations?: Citation[]
   relatedPolicy?: string[]
+  relatedActions?: string[]
 }
 
 export interface Action extends ContentBase {
