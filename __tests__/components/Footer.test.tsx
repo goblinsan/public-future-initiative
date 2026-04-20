@@ -24,7 +24,10 @@ describe('Footer', () => {
 
   it('has accessible footer navigation', () => {
     render(<Footer />)
-    expect(screen.getByRole('navigation', { name: /footer navigation/i })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: /footer explore navigation/i })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: /footer about navigation/i })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: /footer trust navigation/i })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: /footer support navigation/i })).toBeInTheDocument()
   })
 })
 
