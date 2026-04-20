@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Explainer } from '@/lib/types/content'
-import { renderMarkdown, extractToc } from '@/lib/markdown'
+import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
 import CitationList from '@/components/ui/CitationList'
 
 interface Props {
@@ -112,7 +112,7 @@ export default async function ExplainerPage({ params }: Props) {
                         href={`/policy/${policySlug}`}
                         className="text-body-sm text-brand-blue hover:underline"
                       >
-                        {policySlug.replace(/-/g, ' ')}
+                        {slugToTitle(policySlug)}
                       </Link>
                     </li>
                   ))}
@@ -131,7 +131,7 @@ export default async function ExplainerPage({ params }: Props) {
                         href={`/pilots/${pilotSlug}`}
                         className="text-body-sm text-brand-blue hover:underline"
                       >
-                        {pilotSlug.replace(/-/g, ' ')}
+                        {slugToTitle(pilotSlug)}
                       </Link>
                     </li>
                   ))}

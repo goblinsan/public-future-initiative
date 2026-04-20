@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { GlossaryEntry } from '@/lib/types/content'
-import { renderMarkdown } from '@/lib/markdown'
+import { renderMarkdown, slugToTitle } from '@/lib/markdown'
 import CitationList from '@/components/ui/CitationList'
 
 interface Props {
@@ -87,7 +87,7 @@ export default async function GlossaryEntryPage({ params }: Props) {
                         href={`/glossary/${termSlug}`}
                         className="text-body-sm text-brand-blue hover:underline"
                       >
-                        {termSlug.replace(/-/g, ' ')}
+                        {slugToTitle(termSlug)}
                       </Link>
                     </li>
                   ))}
