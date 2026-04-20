@@ -52,6 +52,7 @@ export function getAllContent<T = Record<string, unknown>>(type: ContentType): P
       })
       .filter((item): item is ParsedContent<T> => item !== null)
       .filter((item) => {
+        if (process.env.PREVIEW_MODE === 'true') return true
         const status = (item.frontmatter as Record<string, unknown>)['status']
         return status === undefined || status === 'published'
       })
