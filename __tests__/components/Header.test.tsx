@@ -28,5 +28,10 @@ describe('Header', () => {
       screen.getByRole('button', { name: /open navigation menu/i })
     ).toBeInTheDocument()
   })
+
+  it('renders a search link', () => {
+    render(<Header />)
+    expect(screen.getByRole('link', { name: /search/i })).toBeInTheDocument()
+  })
 })
 
