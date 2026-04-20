@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Explainer } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
+import { generatePageMetadata, siteMetadata } from '@/lib/metadata'
 import CitationList from '@/components/ui/CitationList'
 import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
@@ -20,10 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const item = getContentBySlug<Explainer>('explainers', slug)
   if (!item) return {}
-  return {
-    title: item.frontmatter.title,
-    description: item.frontmatter.description,
-  }
+  const { frontmatter } = item
+  return generatePageMetadata({
+    title: frontmatter.title,
+    description: frontmatter.description ?? frontmatter.summary,
+    canonicalUrl: `${siteMetadata.siteUrl}/explainers/${slug}`,
+  })
 }
 
 export default async function ExplainerPage({ params }: Props) {

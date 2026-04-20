@@ -43,14 +43,25 @@ export default function Header() {
         </ul>
 
         {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="md:hidden p-2 rounded-md text-slate-600 hover:text-brand-navy hover:bg-brand-slate-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-          aria-label="Open navigation menu"
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMobileOpen((v) => !v)}
-        >
+        <div className="flex items-center gap-2">
+          {/* Search button */}
+          <Link
+            href="/search"
+            className="p-2 rounded-md text-slate-600 hover:text-brand-navy hover:bg-brand-slate-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+            aria-label="Search"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+            </svg>
+          </Link>
+          <button
+            type="button"
+            className="md:hidden p-2 rounded-md text-slate-600 hover:text-brand-navy hover:bg-brand-slate-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+            aria-label="Open navigation menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
           <svg
             className="h-5 w-5"
             viewBox="0 0 20 20"
@@ -71,7 +82,8 @@ export default function Header() {
               />
             )}
           </svg>
-        </button>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -89,6 +101,15 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/search"
+                className="block px-3 py-2.5 rounded-md text-body-sm font-medium text-slate-700 hover:text-brand-navy hover:bg-brand-slate-light transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                Search
+              </Link>
+            </li>
           </ul>
         </div>
       )}

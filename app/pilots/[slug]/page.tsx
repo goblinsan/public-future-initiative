@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Pilot } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
+import { generatePageMetadata, siteMetadata } from '@/lib/metadata'
 import EvidenceSummary from '@/components/ui/EvidenceSummary'
 import type { EvidenceStrength } from '@/components/ui/EvidenceSummary'
 
@@ -20,10 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const item = getContentBySlug<Pilot>('pilots', slug)
   if (!item) return {}
-  return {
-    title: item.frontmatter.title,
-    description: item.frontmatter.description,
-  }
+  const { frontmatter } = item
+  return generatePageMetadata({
+    title: frontmatter.title,
+    description: frontmatter.description,
+    canonicalUrl: `${siteMetadata.siteUrl}/pilots/${slug}`,
+  })
 }
 
 const outcomeConfig: Record<
