@@ -5,7 +5,7 @@ import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Action } from '@/lib/types/content'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -14,7 +14,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = getContentBySlug<Action>('actions', params.slug)
+  const { slug } = await params
+  const item = getContentBySlug<Action>('actions', slug)
   if (!item) return {}
   return {
     title: item.frontmatter.title,
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function ActionPage({ params }: Props) {
-  const item = getContentBySlug<Action>('actions', params.slug)
+export default async function ActionPage({ params }: Props) {
+  const { slug } = await params
+  const item = getContentBySlug<Action>('actions', slug)
   if (!item) notFound()
 
   const { frontmatter, content } = item

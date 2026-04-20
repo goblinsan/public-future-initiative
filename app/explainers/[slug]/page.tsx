@@ -5,7 +5,7 @@ import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Explainer } from '@/lib/types/content'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -14,7 +14,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = getContentBySlug<Explainer>('explainers', params.slug)
+  const { slug } = await params
+  const item = getContentBySlug<Explainer>('explainers', slug)
   if (!item) return {}
   return {
     title: item.frontmatter.title,
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function ExplainerPage({ params }: Props) {
-  const item = getContentBySlug<Explainer>('explainers', params.slug)
+export default async function ExplainerPage({ params }: Props) {
+  const { slug } = await params
+  const item = getContentBySlug<Explainer>('explainers', slug)
   if (!item) notFound()
 
   const { frontmatter, content } = item
