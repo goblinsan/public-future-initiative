@@ -26,12 +26,26 @@ export interface Explainer extends ContentBase {
   relatedPilots?: string[]
 }
 
+export interface PolicyFaq {
+  question: string
+  answer: string
+}
+
+export interface PolicyTradeoffs {
+  pros?: string[]
+  cons?: string[]
+}
+
 export interface PolicyOption extends Omit<ContentBase, 'status'> {
   type: 'policy'
   status: 'draft' | 'published' | 'archived' | 'adopted' | 'rejected'
+  summary?: string
+  contentLabel?: 'explainer' | 'analysis' | 'policy-brief' | 'debate-summary'
   problemStatement: string
   proposedSolution: string
   evidenceStrength: 'strong' | 'moderate' | 'emerging' | 'contested'
+  tradeoffs?: PolicyTradeoffs
+  faqs?: PolicyFaq[]
   citations?: Citation[]
   relatedExplainers?: string[]
   relatedPilots?: string[]
