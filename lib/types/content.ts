@@ -61,6 +61,21 @@ export interface GlossaryEntry {
   slug: string
   term: string
   definition: string
+  publishedAt?: string
+  status?: 'draft' | 'published' | 'archived'
   relatedTerms?: string[]
+  citations?: Citation[]
+}
+
+export interface TimelineEvent {
+  slug: string
+  title: string
+  year: string
+  description: string
+  publishedAt?: string
+  status?: 'draft' | 'published' | 'archived'
+  location?: string
+  outcome?: string
+  tags?: string[]
   citations?: Citation[]
 }
