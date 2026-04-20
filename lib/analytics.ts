@@ -18,6 +18,10 @@ export type AnalyticsEvent =
   | { name: 'event_registration_click'; props?: { actionSlug?: string; actionTitle?: string } }
   | { name: 'pilot_signup_click'; props?: { pilotSlug?: string; pilotTitle?: string } }
 
+type PlausibleWindow = Window & {
+  plausible?: (name: string, opts?: { props?: Record<string, unknown> }) => void
+}
+
 /**
  * Send a named analytics event with optional properties.
  *
@@ -27,9 +31,12 @@ export function trackEvent(event: AnalyticsEvent): void {
   if (typeof window === 'undefined') return
 
   // Forward to window.plausible if available (Plausible Analytics)
-  if (typeof (window as Window & { plausible?: (name: string, opts?: { props?: Record<string, unknown> }) => void }).plausible === 'function') {
-    const win = window as unknown as { plausible: (name: string, opts?: { props?: Record<string, unknown> }) => void }
-    win.plausible(event.name, event.props ? { props: event.props as Record<string, unknown> } : undefined)
+  const plausibleWindow = window as PlausibleWindow
+  if (typeof plausibleWindow.plausible === 'function') {
+    plausibleWindow.plausible(
+      event.name,
+      event.props ? { props: event.props as Record<string, unknown> } : undefined
+    )
     return
   }
 

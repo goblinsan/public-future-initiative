@@ -204,7 +204,7 @@ function MediaForm({ onSuccess }: { onSuccess: () => void }) {
   )
 }
 
-function PartnerContactForm({ onSuccess }: { onSuccess: () => void }) {
+function PartnerForm({ onSuccess }: { onSuccess: () => void }) {
   const [fields, setFields] = useState<OrgFields>({ name: '', email: '', organisation: '', message: '' })
   const [state, setState] = useState<FormState>({ status: 'idle' })
 
@@ -359,7 +359,7 @@ export default function ContactForms() {
         <>
           {activeTab === 'general' && <GeneralForm onSuccess={handleSuccess} />}
           {activeTab === 'media' && <MediaForm onSuccess={handleSuccess} />}
-          {activeTab === 'partner' && <PartnerContactForm onSuccess={handleSuccess} />}
+          {activeTab === 'partner' && <PartnerForm onSuccess={handleSuccess} />}
           {activeTab === 'speaking' && <SpeakingForm onSuccess={handleSuccess} />}
         </>
       )}

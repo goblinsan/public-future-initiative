@@ -16,7 +16,7 @@ interface Props {
 
 type SignupState = 'idle' | 'submitting' | 'success' | 'error'
 
-export default function NewsletterSignup({ location = 'unknown', variant = 'default' }: Props) {
+export default function NewsletterSignup({ location = 'site', variant = 'default' }: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<SignupState>('idle')
   const [errorMessage, setErrorMessage] = useState('')
