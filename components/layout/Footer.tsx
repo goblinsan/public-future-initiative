@@ -8,18 +8,28 @@ const exploreLinks = [
   { href: '/debate', label: 'Debate' },
 ]
 
-const supportLinks = [
+const aboutLinks = [
   { href: '/about', label: 'About' },
+  { href: '/about/mission', label: 'Our Mission' },
+  { href: '/about/team', label: 'Team' },
+  { href: '/about/advisors', label: 'Advisory Board' },
+  { href: '/governance', label: 'Governance' },
+  { href: '/partners', label: 'Funders & Partners' },
+]
+
+const trustLinks = [
   { href: '/trust-center', label: 'Trust Center' },
+  { href: '/editorial-standards', label: 'Editorial Standards' },
+  { href: '/methodology', label: 'Methodology' },
+  { href: '/corrections', label: 'Corrections' },
+  { href: '/moderation', label: 'Moderation Policy' },
+  { href: '/privacy', label: 'Privacy Policy' },
+]
+
+const supportLinks = [
   { href: '/glossary', label: 'Glossary' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
-]
-
-const legalLinks = [
-  { href: '/privacy', label: 'Privacy' },
-  { href: '/corrections', label: 'Corrections' },
-  { href: '/partners', label: 'Partners' },
 ]
 
 export default function Footer() {
@@ -62,14 +72,14 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Support */}
+          {/* About */}
           <div>
             <h3 className="text-label-sm uppercase tracking-wider text-white/40 mb-4">
               About
             </h3>
-            <nav aria-label="Footer support navigation">
+            <nav aria-label="Footer about navigation">
               <ul className="space-y-2.5">
-                {supportLinks.map(({ href, label }) => (
+                {aboutLinks.map(({ href, label }) => (
                   <li key={href}>
                     <Link
                       href={href}
@@ -83,14 +93,31 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Legal */}
+          {/* Trust & Support */}
           <div>
             <h3 className="text-label-sm uppercase tracking-wider text-white/40 mb-4">
-              Legal &amp; Policy
+              Trust &amp; Policy
             </h3>
-            <nav aria-label="Footer navigation">
+            <nav aria-label="Footer trust navigation">
               <ul className="space-y-2.5">
-                {legalLinks.map(({ href, label }) => (
+                {trustLinks.map(({ href, label }) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="text-body-sm text-white/70 hover:text-white transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <h3 className="text-label-sm uppercase tracking-wider text-white/40 mb-4 mt-8">
+              Support
+            </h3>
+            <nav aria-label="Footer support navigation">
+              <ul className="space-y-2.5">
+                {supportLinks.map(({ href, label }) => (
                   <li key={href}>
                     <Link
                       href={href}
