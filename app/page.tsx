@@ -2,6 +2,7 @@ import Link from 'next/link'
 import SectionIntro from '@/components/ui/SectionIntro'
 import StatCallout from '@/components/ui/StatCallout'
 import CTAPanel from '@/components/ui/CTAPanel'
+import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
 const featuredDebates = [
   {
@@ -260,7 +261,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 7. Participation CTA ── */}
+      {/* ── 7. Newsletter ── */}
+      <section className="py-16 px-6 md:px-10 bg-brand-navy">
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-lg mx-auto text-center mb-8">
+            <p className="eyebrow text-white/50 mb-3">Stay informed</p>
+            <h2 className="font-serif text-display-sm text-white mb-3">
+              Policy moves fast. So do we.
+            </h2>
+            <p className="text-white/70 text-body-md">
+              New evidence, pilot results, and policy analysis — delivered when there&apos;s
+              something worth reading.
+            </p>
+          </div>
+          <div className="max-w-md mx-auto">
+            <NewsletterSignup location="homepage" variant="inverted" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. Participation CTA ── */}
       <section className="py-16 px-6 md:px-10 bg-brand-cream">
         <div className="max-w-5xl mx-auto">
           <CTAPanel

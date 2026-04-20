@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 type FormType = 'volunteer' | 'partner' | 'local-organizer' | 'pilot-submission'
 
@@ -133,6 +134,7 @@ function VolunteerForm({ onSuccess }: { onSuccess: () => void }) {
       })
       if (!res.ok) throw new Error('Submission failed')
       setState({ status: 'success' })
+      trackEvent({ name: 'volunteer_form_submit' })
       onSuccess()
     } catch {
       setState({ status: 'error', message: 'Something went wrong. Please try again.' })
@@ -243,6 +245,7 @@ function PartnerForm({ onSuccess }: { onSuccess: () => void }) {
       })
       if (!res.ok) throw new Error('Submission failed')
       setState({ status: 'success' })
+      trackEvent({ name: 'partner_inquiry_submit' })
       onSuccess()
     } catch {
       setState({ status: 'error', message: 'Something went wrong. Please try again.' })
@@ -353,6 +356,7 @@ function LocalOrganizerForm({ onSuccess }: { onSuccess: () => void }) {
       })
       if (!res.ok) throw new Error('Submission failed')
       setState({ status: 'success' })
+      trackEvent({ name: 'local_organizer_form_submit' })
       onSuccess()
     } catch {
       setState({ status: 'error', message: 'Something went wrong. Please try again.' })
@@ -485,6 +489,7 @@ function PilotSubmissionForm({ onSuccess }: { onSuccess: () => void }) {
       })
       if (!res.ok) throw new Error('Submission failed')
       setState({ status: 'success' })
+      trackEvent({ name: 'pilot_submission_submit' })
       onSuccess()
     } catch {
       setState({ status: 'error', message: 'Something went wrong. Please try again.' })
