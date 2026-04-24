@@ -48,6 +48,9 @@
 	"env": {
 		"staging": {
 			"name": "public-future-initiative-staging",
+			"images": {
+				"binding": "IMAGES"
+			},
 			"services": [
 				{
 					"binding": "WORKER_SELF_REFERENCE",
