@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Check } from 'lucide-react'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { PolicyOption } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
@@ -165,7 +166,7 @@ export default async function PolicyDetailPage({ params }: Props) {
                       <ul className="space-y-2.5">
                         {tradeoffs.pros.map((pro) => (
                           <li key={pro} className="flex gap-2 text-body-sm text-slate-700">
-                            <span className="text-emerald-600 mt-0.5 flex-shrink-0">✓</span>
+                            <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden />
                             {pro}
                           </li>
                         ))}

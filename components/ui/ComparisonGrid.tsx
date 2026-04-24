@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Check } from 'lucide-react'
 
 export interface ComparisonItem {
   title: string
@@ -38,7 +39,7 @@ export default function ComparisonGrid({ title, items }: ComparisonGridProps) {
                     <ul className="space-y-1">
                       {item.pros.map((pro) => (
                         <li key={pro} className="flex gap-2 text-body-sm text-slate-600">
-                          <span className="text-emerald-600 mt-0.5 flex-shrink-0">✓</span>
+                          <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden />
                           {pro}
                         </li>
                       ))}

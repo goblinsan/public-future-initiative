@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, type ReactNode } from 'react'
+import { UserPlus, Handshake, MapPin, FlaskConical, Check } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 type FormType = 'volunteer' | 'partner' | 'local-organizer' | 'pilot-submission'
@@ -43,11 +44,11 @@ interface PilotSubmissionFields {
   phase: string
 }
 
-const tabs: { id: FormType; label: string; icon: string }[] = [
-  { id: 'volunteer', label: 'Volunteer', icon: '🙋' },
-  { id: 'partner', label: 'Partner', icon: '🤝' },
-  { id: 'local-organizer', label: 'Local Organiser', icon: '📍' },
-  { id: 'pilot-submission', label: 'Submit a Pilot', icon: '🔬' },
+const tabs: { id: FormType; label: string; icon: ReactNode }[] = [
+  { id: 'volunteer', label: 'Volunteer', icon: <UserPlus className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'partner', label: 'Partner', icon: <Handshake className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'local-organizer', label: 'Local Organiser', icon: <MapPin className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'pilot-submission', label: 'Submit a Pilot', icon: <FlaskConical className="w-3.5 h-3.5" aria-hidden /> },
 ]
 
 function SuccessMessage({ type, onReset }: { type: FormType; onReset: () => void }) {
@@ -74,8 +75,8 @@ function SuccessMessage({ type, onReset }: { type: FormType; onReset: () => void
 
   return (
     <div className="text-center py-12">
-      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 text-2xl mb-6">
-        ✓
+      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 mb-6">
+        <Check className="w-7 h-7" aria-hidden />
       </div>
       <h3 className="font-serif text-heading-lg text-brand-navy mb-3">{title}</h3>
       <p className="text-body-md text-slate-600 max-w-md mx-auto mb-8">{body}</p>
@@ -617,13 +618,14 @@ export default function GetInvolvedForms() {
               setActiveTab(id)
               setSucceeded(false)
             }}
-            className={`text-label-sm px-4 py-2 rounded-md border transition-colors ${
+            className={`inline-flex items-center gap-1.5 text-label-sm px-4 py-2 rounded-md border transition-colors ${
               activeTab === id
                 ? 'bg-brand-navy text-white border-brand-navy'
                 : 'bg-white text-slate-700 border-slate-200 hover:border-brand-blue/40'
             }`}
           >
-            {icon} {label}
+            {icon}
+            <span>{label}</span>
           </button>
         ))}
       </div>

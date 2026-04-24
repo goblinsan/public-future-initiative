@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, type ReactNode } from 'react'
 import Link from 'next/link'
+import { Megaphone, Calendar, PenLine, UserPlus, MapPin, Wrench, Zap } from 'lucide-react'
 import type { Action } from '@/lib/types/content'
 
 interface ActionEntry {
@@ -15,15 +16,15 @@ interface ActionsDirectoryProps {
 
 const actionTypeConfig: Record<
   NonNullable<Action['actionType']>,
-  { label: string; icon: string; color: string }
+  { label: string; icon: ReactNode; color: string }
 > = {
-  campaign: { label: 'Campaign', icon: '📣', color: 'bg-rose-50 text-rose-800 border-rose-200' },
-  event: { label: 'Event', icon: '📅', color: 'bg-blue-50 text-blue-800 border-blue-200' },
-  petition: { label: 'Petition', icon: '✍️', color: 'bg-purple-50 text-purple-800 border-purple-200' },
-  volunteer: { label: 'Volunteer', icon: '🙋', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
-  'local-action': { label: 'Local Action', icon: '📍', color: 'bg-amber-50 text-amber-800 border-amber-200' },
-  toolkit: { label: 'Toolkit', icon: '🛠️', color: 'bg-slate-100 text-slate-700 border-slate-200' },
-  other: { label: 'Other', icon: '✊', color: 'bg-brand-blue-muted text-brand-blue border-brand-blue/20' },
+  campaign: { label: 'Campaign', icon: <Megaphone className="w-3 h-3" aria-hidden />, color: 'bg-rose-50 text-rose-800 border-rose-200' },
+  event: { label: 'Event', icon: <Calendar className="w-3 h-3" aria-hidden />, color: 'bg-blue-50 text-blue-800 border-blue-200' },
+  petition: { label: 'Petition', icon: <PenLine className="w-3 h-3" aria-hidden />, color: 'bg-purple-50 text-purple-800 border-purple-200' },
+  volunteer: { label: 'Volunteer', icon: <UserPlus className="w-3 h-3" aria-hidden />, color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+  'local-action': { label: 'Local Action', icon: <MapPin className="w-3 h-3" aria-hidden />, color: 'bg-amber-50 text-amber-800 border-amber-200' },
+  toolkit: { label: 'Toolkit', icon: <Wrench className="w-3 h-3" aria-hidden />, color: 'bg-slate-100 text-slate-700 border-slate-200' },
+  other: { label: 'Other', icon: <Zap className="w-3 h-3" aria-hidden />, color: 'bg-brand-blue-muted text-brand-blue border-brand-blue/20' },
 }
 
 const ALL = 'all'
@@ -82,16 +83,17 @@ export default function ActionsDirectory({ actions }: ActionsDirectoryProps) {
           const config = actionTypeConfig[type as Action['actionType']]
           if (!config) return null
           return (
-            <button
+              <button
               key={type}
               onClick={() => setTypeFilter(type)}
-              className={`text-label-sm px-3 py-1.5 rounded-sm border transition-colors ${
+              className={`inline-flex items-center gap-1 text-label-sm px-3 py-1.5 rounded-sm border transition-colors ${
                 typeFilter === type
                   ? 'bg-brand-navy text-white border-brand-navy'
                   : 'bg-white text-slate-700 border-slate-200 hover:border-brand-blue/40'
               }`}
             >
-              {config.icon} {config.label}
+              {config.icon}
+              {config.label}
             </button>
           )
         })}
@@ -158,7 +160,7 @@ function ActionCard({
       <div className="flex items-start justify-between gap-3 mb-3">
         {typeConfig && (
           <span
-            className={`flex-shrink-0 text-label-sm border px-2 py-0.5 rounded-sm ${typeConfig.color}`}
+            className={`flex-shrink-0 inline-flex items-center gap-1 text-label-sm border px-2 py-0.5 rounded-sm ${typeConfig.color}`}
           >
             {typeConfig.icon} {typeConfig.label}
           </span>
@@ -175,8 +177,8 @@ function ActionCard({
       </h2>
 
       {frontmatter.location && !frontmatter.isRemote && (
-        <p className="text-label-sm text-brand-slate mb-2">
-          📍 {frontmatter.location}
+        <p className="text-label-sm text-brand-slate mb-2 flex items-center gap-1">
+          <MapPin className="w-3 h-3 flex-shrink-0" aria-hidden /> {frontmatter.location}
           {frontmatter.startDate && (
             <span className="ml-2">
               · {frontmatter.startDate.slice(0, 7)}
@@ -186,8 +188,8 @@ function ActionCard({
       )}
 
       {frontmatter.startDate && frontmatter.isRemote && (
-        <p className="text-label-sm text-brand-slate mb-2">
-          📅 From {frontmatter.startDate.slice(0, 7)}
+        <p className="text-label-sm text-brand-slate mb-2 flex items-center gap-1">
+          <Calendar className="w-3 h-3 flex-shrink-0" aria-hidden /> From {frontmatter.startDate.slice(0, 7)}
         </p>
       )}
 

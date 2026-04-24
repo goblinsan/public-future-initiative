@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { Check } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 interface Props {
@@ -61,8 +62,8 @@ export default function NewsletterSignup({ location = 'site', variant = 'default
             : 'bg-white border-slate-200 shadow-card'
         }`}
       >
-        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 text-xl mb-4">
-          ✓
+        <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 mb-4">
+          <Check className="w-5 h-5" aria-hidden />
         </div>
         <p className={`font-semibold text-heading-sm mb-1 ${isInverted ? 'text-white' : 'text-brand-navy'}`}>
           You&apos;re signed up

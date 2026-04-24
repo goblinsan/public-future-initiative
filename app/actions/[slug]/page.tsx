@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { type ReactNode } from 'react'
+import { Megaphone, Calendar, PenLine, UserPlus, MapPin, Wrench, Zap, Building2 } from 'lucide-react'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Action } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
@@ -26,15 +28,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const actionTypeConfig: Record<
   NonNullable<Action['actionType']>,
-  { label: string; icon: string; color: string }
+  { label: string; icon: ReactNode; color: string }
 > = {
-  campaign: { label: 'Campaign', icon: '📣', color: 'bg-rose-50 text-rose-800 border-rose-200' },
-  event: { label: 'Event', icon: '📅', color: 'bg-blue-50 text-blue-800 border-blue-200' },
-  petition: { label: 'Petition', icon: '✍️', color: 'bg-purple-50 text-purple-800 border-purple-200' },
-  volunteer: { label: 'Volunteer', icon: '🙋', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
-  'local-action': { label: 'Local Action', icon: '📍', color: 'bg-amber-50 text-amber-800 border-amber-200' },
-  toolkit: { label: 'Toolkit', icon: '🛠️', color: 'bg-slate-100 text-slate-700 border-slate-200' },
-  other: { label: 'Other', icon: '✊', color: 'bg-brand-blue-muted text-brand-blue border-brand-blue/20' },
+  campaign: { label: 'Campaign', icon: <Megaphone className="w-3 h-3" aria-hidden />, color: 'bg-rose-50 text-rose-800 border-rose-200' },
+  event: { label: 'Event', icon: <Calendar className="w-3 h-3" aria-hidden />, color: 'bg-blue-50 text-blue-800 border-blue-200' },
+  petition: { label: 'Petition', icon: <PenLine className="w-3 h-3" aria-hidden />, color: 'bg-purple-50 text-purple-800 border-purple-200' },
+  volunteer: { label: 'Volunteer', icon: <UserPlus className="w-3 h-3" aria-hidden />, color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+  'local-action': { label: 'Local Action', icon: <MapPin className="w-3 h-3" aria-hidden />, color: 'bg-amber-50 text-amber-800 border-amber-200' },
+  toolkit: { label: 'Toolkit', icon: <Wrench className="w-3 h-3" aria-hidden />, color: 'bg-slate-100 text-slate-700 border-slate-200' },
+  other: { label: 'Other', icon: <Zap className="w-3 h-3" aria-hidden />, color: 'bg-brand-blue-muted text-brand-blue border-brand-blue/20' },
 }
 
 export default async function ActionPage({ params }: Props) {
@@ -63,7 +65,7 @@ export default async function ActionPage({ params }: Props) {
 
           <div className="flex flex-wrap gap-2 mb-4">
             {typeConfig && (
-              <span className={`text-label-sm border px-2.5 py-1 rounded-sm ${typeConfig.color}`}>
+              <span className={`inline-flex items-center gap-1 text-label-sm border px-2.5 py-1 rounded-sm ${typeConfig.color}`}>
                 {typeConfig.icon} {typeConfig.label}
               </span>
             )}
@@ -83,18 +85,20 @@ export default async function ActionPage({ params }: Props) {
           {/* Meta strip */}
           <div className="flex flex-wrap gap-4 items-center">
             {frontmatter.location && !frontmatter.isRemote && (
-              <span className="text-white/60 text-label-sm">📍 {frontmatter.location}</span>
+              <span className="text-white/60 text-label-sm flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5" aria-hidden /> {frontmatter.location}
+              </span>
             )}
             {frontmatter.startDate && (
-              <span className="text-white/60 text-label-sm">
-                📅{' '}
+              <span className="text-white/60 text-label-sm flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5" aria-hidden />{' '}
                 {frontmatter.startDate.slice(0, 10)}
                 {frontmatter.endDate ? ` – ${frontmatter.endDate.slice(0, 10)}` : ''}
               </span>
             )}
             {(frontmatter.organizer || frontmatter.partner) && (
-              <span className="text-white/60 text-label-sm">
-                🏢 {frontmatter.organizer}
+              <span className="text-white/60 text-label-sm flex items-center gap-1">
+                <Building2 className="w-3.5 h-3.5" aria-hidden /> {frontmatter.organizer}
                 {frontmatter.partner ? ` · ${frontmatter.partner}` : ''}
               </span>
             )}

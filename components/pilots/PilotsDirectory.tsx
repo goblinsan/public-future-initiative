@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import { MapPin } from 'lucide-react'
 import type { Pilot } from '@/lib/types/content'
 
 interface PilotEntry {
@@ -195,8 +196,8 @@ function PilotCard({
         {frontmatter.title}
       </h2>
 
-      <p className="text-label-sm text-brand-slate mb-2">
-        📍 {frontmatter.location}
+      <p className="text-label-sm text-brand-slate mb-2 flex items-center gap-1">
+        <MapPin className="w-3 h-3 flex-shrink-0" aria-hidden /> {frontmatter.location}
         {frontmatter.startDate && (
           <span className="ml-2">
             · {frontmatter.startDate.slice(0, 4)}

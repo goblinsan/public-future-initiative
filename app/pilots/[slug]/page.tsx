@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { MapPin, AlertTriangle } from 'lucide-react'
 import { getContentBySlug, getAllContent } from '@/lib/content'
 import type { Pilot } from '@/lib/types/content'
 import { renderMarkdown, extractToc, slugToTitle } from '@/lib/markdown'
@@ -85,7 +86,9 @@ export default async function PilotPage({ params }: Props) {
 
           {/* Meta strip */}
           <div className="flex flex-wrap gap-4 items-center mt-4">
-            <span className="text-white/60 text-label-sm">📍 {frontmatter.location}</span>
+            <span className="text-white/60 text-label-sm flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5" aria-hidden /> {frontmatter.location}
+            </span>
             {frontmatter.startDate && (
               <span className="text-white/60 text-label-sm">
                 {frontmatter.startDate.slice(0, 4)}
@@ -133,7 +136,7 @@ export default async function PilotPage({ params }: Props) {
                 <ul className="space-y-2">
                   {frontmatter.limitations.map((item, i) => (
                     <li key={i} className="flex gap-2 text-body-sm text-slate-700">
-                      <span className="flex-shrink-0 text-rose-500 mt-0.5">⚠</span>
+                      <AlertTriangle className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" aria-hidden />
                       <span>{item}</span>
                     </li>
                   ))}

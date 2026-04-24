@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Check } from 'lucide-react'
 import type { Citation } from '@/lib/types/content'
 
 export type EvidenceStrength = 'strong' | 'moderate' | 'emerging' | 'contested'
@@ -56,7 +57,7 @@ export default function EvidenceSummary({
           <ul className="space-y-2">
             {keyFindings.map((finding, i) => (
               <li key={i} className="flex gap-2 text-body-sm text-slate-700">
-                <span className="flex-shrink-0 text-emerald-600 mt-0.5">✓</span>
+                <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" aria-hidden />
                 <span>{finding}</span>
               </li>
             ))}

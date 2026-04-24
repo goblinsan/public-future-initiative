@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { type ReactNode } from 'react'
+import { HandHeart, Handshake, MapPin, Flask } from '@phosphor-icons/react/dist/ssr'
 import PageHeader from '@/components/ui/PageHeader'
 import GetInvolvedForms from '@/components/actions/GetInvolvedForms'
 
@@ -9,10 +11,10 @@ export const metadata: Metadata = {
     'Register as a volunteer, partner, local organiser, or submit a pilot for consideration.',
 }
 
-const ways = [
+const ways: { id: string; icon: ReactNode; title: string; description: string; commitment: string }[] = [
   {
     id: 'volunteer',
-    icon: '🙋',
+    icon: <HandHeart size={28} weight="duotone" />,
     title: 'Volunteer Facilitator',
     description:
       'Host structured policy discussions in your community. We provide training, materials, and support. No expertise needed.',
@@ -20,7 +22,7 @@ const ways = [
   },
   {
     id: 'partner',
-    icon: '🤝',
+    icon: <Handshake size={28} weight="duotone" />,
     title: 'Partner Organisation',
     description:
       'Collaborate on research, events, content, or funding. We work with research institutions, charities, public bodies, and media organisations.',
@@ -28,7 +30,7 @@ const ways = [
   },
   {
     id: 'local-organizer',
-    icon: '📍',
+    icon: <MapPin size={28} weight="duotone" />,
     title: 'Local Organiser',
     description:
       'Register to host a discussion in your community group, faith group, workplace, or neighbourhood. We\'ll send you a free discussion kit.',
@@ -36,7 +38,7 @@ const ways = [
   },
   {
     id: 'pilot-submission',
-    icon: '🔬',
+    icon: <Flask size={28} weight="duotone" />,
     title: 'Submit a Pilot',
     description:
       'Running or evaluating a local pilot or initiative? Submit it for consideration to our pilots directory. We publish honest results — including failures.',
@@ -63,9 +65,9 @@ export default function GetInvolvedPage() {
               className="bg-white rounded-card border border-slate-200 shadow-card p-6"
             >
               <div className="flex items-start gap-4">
-                <span className="text-2xl flex-shrink-0 mt-0.5" aria-hidden>
+                <div className="text-brand-blue flex-shrink-0 mt-0.5" aria-hidden>
                   {icon}
-                </span>
+                </div>
                 <div>
                   <h3 className="font-semibold text-heading-sm text-brand-navy mb-1">{title}</h3>
                   <p className="text-body-sm text-slate-600 mb-3">{description}</p>

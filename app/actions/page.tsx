@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { type ReactNode } from 'react'
+import { Megaphone, CalendarBlank, HandHeart, MapPin, Toolbox, FileText } from '@phosphor-icons/react/dist/ssr'
 import PageHeader from '@/components/ui/PageHeader'
 import CTAPanel from '@/components/ui/CTAPanel'
 import ActionsDirectory from '@/components/actions/ActionsDirectory'
@@ -13,39 +15,39 @@ export const metadata: Metadata = {
     'Campaigns, events, volunteering, and toolkits — practical next steps to participate in pilots, support advocacy, and take informed civic action.',
 }
 
-const participationPaths = [
+const participationPaths: { icon: ReactNode; title: string; description: string; filter?: string; href?: string }[] = [
   {
-    icon: '📣',
+    icon: <Megaphone size={28} weight="duotone" />,
     title: 'Campaigns',
     description: 'Add your voice to active campaigns pushing for evidence-based policy change.',
     filter: 'campaign',
   },
   {
-    icon: '📅',
+    icon: <CalendarBlank size={28} weight="duotone" />,
     title: 'Events',
     description: 'Attend a structured discussion, town hall, or online session near you.',
     filter: 'event',
   },
   {
-    icon: '🙋',
+    icon: <HandHeart size={28} weight="duotone" />,
     title: 'Volunteer',
     description: 'Facilitate community discussions, help evaluate pilots, or support our work.',
     filter: 'volunteer',
   },
   {
-    icon: '📍',
+    icon: <MapPin size={28} weight="duotone" />,
     title: 'Local Action',
     description: 'Host a discussion or support a local initiative in your community.',
     filter: 'local-action',
   },
   {
-    icon: '🛠️',
+    icon: <Toolbox size={28} weight="duotone" />,
     title: 'Toolkits',
     description: 'Step-by-step guides for writing to representatives, briefing groups, and more.',
     filter: 'toolkit',
   },
   {
-    icon: '📝',
+    icon: <FileText size={28} weight="duotone" />,
     title: 'Get Involved',
     description: 'Register as a volunteer, partner, or local organiser — or submit a pilot.',
     href: '/get-involved',
@@ -73,9 +75,9 @@ export default function ActionsPage() {
               href={href ?? `#browse`}
               className="group flex gap-4 items-start bg-white rounded-card border border-slate-200 shadow-card p-5 hover:shadow-card-hover hover:border-brand-blue/30 transition-all"
             >
-              <span className="text-2xl leading-none mt-0.5 flex-shrink-0" aria-hidden>
+              <div className="text-brand-blue flex-shrink-0 mt-0.5" aria-hidden>
                 {icon}
-              </span>
+              </div>
               <div>
                 <h3 className="font-semibold text-heading-sm text-brand-navy group-hover:text-brand-blue transition-colors mb-1">
                   {title}

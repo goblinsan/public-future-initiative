@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { type ReactNode } from 'react'
+import { BookOpen, Scales, Flask, HandFist } from '@phosphor-icons/react/dist/ssr'
 import SectionIntro from '@/components/ui/SectionIntro'
 import StatCallout from '@/components/ui/StatCallout'
 import CTAPanel from '@/components/ui/CTAPanel'
@@ -25,31 +27,31 @@ const featuredDebates = [
   },
 ]
 
-const pathways = [
+const pathways: { href: string; icon: ReactNode; title: string; description: string }[] = [
   {
     href: '/explainers',
-    icon: '📖',
+    icon: <BookOpen size={28} weight="duotone" />,
     title: "What's Changing",
     description:
       'Clear, evidence-based explainers on the forces reshaping our shared future — from housing to AI to climate.',
   },
   {
     href: '/policy',
-    icon: '⚖️',
+    icon: <Scales size={28} weight="duotone" />,
     title: 'Policy Paths',
     description:
       'Every major policy option, mapped with evidence ratings, trade-offs, and links to real-world results.',
   },
   {
     href: '/pilots',
-    icon: '🔬',
+    icon: <Flask size={28} weight="duotone" />,
     title: 'Pilots',
     description:
       'What happens when ideas are tested. Real programs, honest outcomes, transferable lessons.',
   },
   {
     href: '/actions',
-    icon: '✊',
+    icon: <HandFist size={28} weight="duotone" />,
     title: 'Take Action',
     description:
       'Campaigns, petitions, events, and volunteering opportunities — matched to issues you care about.',
@@ -160,9 +162,9 @@ export default function HomePage() {
                 href={href}
                 className="group flex gap-5 items-start bg-white rounded-card border border-slate-200 shadow-card p-6 hover:shadow-card-hover hover:border-brand-blue/30 transition-all"
               >
-                <span className="text-2xl leading-none mt-0.5 flex-shrink-0" aria-hidden>
+                <div className="text-brand-blue flex-shrink-0 mt-0.5" aria-hidden>
                   {icon}
-                </span>
+                </div>
                 <div>
                   <h3 className="font-semibold text-heading-sm text-brand-navy group-hover:text-brand-blue transition-colors mb-1.5">
                     {title}

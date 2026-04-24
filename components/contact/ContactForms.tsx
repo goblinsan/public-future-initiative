@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, type ReactNode } from 'react'
+import { Mail, Newspaper, Handshake, Mic, Check } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 
 type ContactType = 'general' | 'media' | 'partner' | 'speaking'
@@ -20,11 +21,11 @@ interface OrgFields extends BaseFields {
   organisation: string
 }
 
-const tabs: { id: ContactType; label: string; icon: string }[] = [
-  { id: 'general', label: 'General', icon: '✉️' },
-  { id: 'media', label: 'Media', icon: '📰' },
-  { id: 'partner', label: 'Partner', icon: '🤝' },
-  { id: 'speaking', label: 'Speaking', icon: '🎤' },
+const tabs: { id: ContactType; label: string; icon: ReactNode }[] = [
+  { id: 'general', label: 'General', icon: <Mail className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'media', label: 'Media', icon: <Newspaper className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'partner', label: 'Partner', icon: <Handshake className="w-3.5 h-3.5" aria-hidden /> },
+  { id: 'speaking', label: 'Speaking', icon: <Mic className="w-3.5 h-3.5" aria-hidden /> },
 ]
 
 const tabDescriptions: Record<ContactType, string> = {
@@ -84,8 +85,8 @@ function SuccessMessage({ type, onReset }: { type: ContactType; onReset: () => v
   const { title, body } = successMessages[type]
   return (
     <div className="text-center py-12">
-      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 text-2xl mb-6">
-        ✓
+      <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 mb-6">
+        <Check className="w-7 h-7" aria-hidden />
       </div>
       <h3 className="font-serif text-heading-lg text-brand-navy mb-3">{title}</h3>
       <p className="text-body-md text-slate-600 max-w-md mx-auto mb-8">{body}</p>
@@ -336,13 +337,14 @@ export default function ContactForms() {
               setActiveTab(id)
               setSucceeded(false)
             }}
-            className={`text-label-sm px-4 py-2 rounded-md border transition-colors ${
+            className={`inline-flex items-center gap-1.5 text-label-sm px-4 py-2 rounded-md border transition-colors ${
               activeTab === id
                 ? 'bg-brand-navy text-white border-brand-navy'
                 : 'bg-white text-slate-700 border-slate-200 hover:border-brand-blue/40'
             }`}
           >
-            {icon} {label}
+            {icon}
+            <span>{label}</span>
           </button>
         ))}
       </div>
