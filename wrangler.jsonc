@@ -21,12 +21,12 @@
 	],
 	"routes": [
 		{
-			"pattern": "publicfutureinitiative.org",
-			"custom_domain": true
+			"pattern": "publicfutureinitiative.org/*",
+			"zone_name": "publicfutureinitiative.org"
 		},
 		{
-			"pattern": "www.publicfutureinitiative.org",
-			"custom_domain": true
+			"pattern": "www.publicfutureinitiative.org/*",
+			"zone_name": "publicfutureinitiative.org"
 		}
 	],
 	"r2_buckets": [
