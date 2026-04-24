@@ -21,11 +21,11 @@
 	],
 	"routes": [
 		{
-			"pattern": "publicfutureinitiative.org/*",
+			"pattern": "publicfutureinitiative.org",
 			"custom_domain": true
 		},
 		{
-			"pattern": "www.publicfutureinitiative.org/*",
+			"pattern": "www.publicfutureinitiative.org",
 			"custom_domain": true
 		}
 	],
@@ -65,7 +65,7 @@
 			],
 			"routes": [
 				{
-					"pattern": "staging.publicfutureinitiative.org/*",
+					"pattern": "staging.publicfutureinitiative.org",
 					"custom_domain": true
 				}
 			]
