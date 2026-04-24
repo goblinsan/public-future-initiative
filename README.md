@@ -118,3 +118,32 @@ See [`plans/public-future-initiative-site-build.md`](./plans/public-future-initi
 
 GitHub Actions runs on every push to `main` and all pull requests:
 `typecheck → lint → build → test`
+
+## Cloudflare Deployment
+
+This repo is configured for OpenNext on Cloudflare Workers with two deployment tiers:
+
+- Pull requests deploy to `staging`
+- Merges/pushes to `main` deploy to production
+
+### One-time setup
+
+1. Ensure your domain is active in your Cloudflare account.
+2. Create two R2 buckets in Cloudflare:
+	- `public-future-initiative-opennext-cache`
+	- `public-future-initiative-opennext-cache-staging`
+3. In GitHub repository settings, add these Actions secrets:
+	- `CF_API_TOKEN` (token with Workers Scripts edit and R2 edit permissions)
+	- `CF_ACCOUNT_ID` (Cloudflare account ID)
+4. In Cloudflare Workers, add custom domains/routes:
+	- `publicfutureinitiative.org/*`
+	- `www.publicfutureinitiative.org/*`
+	- `staging.publicfutureinitiative.org/*`
+5. Ensure DNS for the above hostnames is managed by Cloudflare.
+
+### Workflow behavior
+
+- Staging deploy job: `.github/workflows/ci.yml` on `pull_request`
+- Production deploy job: `.github/workflows/ci.yml` on `push` to `main`
+
+Both jobs build with `npm run build:cloudflare` and deploy via Wrangler/OpenNext.

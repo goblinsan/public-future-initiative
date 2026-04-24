@@ -1,0 +1,74 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "public-future-initiative",
+	"compatibility_date": "2026-04-24",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			// Self-reference service binding, the service name must match the worker name
+			// see https://opennext.js.org/cloudflare/caching
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "public-future-initiative"
+		}
+	],
+	"routes": [
+		{
+			"pattern": "publicfutureinitiative.org",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.publicfutureinitiative.org",
+			"custom_domain": true
+		}
+	],
+	"r2_buckets": [
+		// Use R2 incremental cache
+		// See https://opennext.js.org/cloudflare/caching
+		{
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",
+			// Create the bucket before deploying
+			// You can change the bucket name if you want
+			// See https://developers.cloudflare.com/workers/wrangler/commands/#r2-bucket-create
+			"bucket_name": "public-future-initiative-opennext-cache"
+		}
+	],
+	"images": {
+		// Enable image optimization
+		// see https://opennext.js.org/cloudflare/howtos/image
+		"binding": "IMAGES"
+	},
+	"env": {
+		"staging": {
+			"name": "public-future-initiative-staging",
+			"images": {
+				"binding": "IMAGES"
+			},
+			"services": [
+				{
+					"binding": "WORKER_SELF_REFERENCE",
+					"service": "public-future-initiative-staging"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "NEXT_INC_CACHE_R2_BUCKET",
+					"bucket_name": "public-future-initiative-opennext-cache-staging"
+				}
+			],
+			"routes": [
+				{
+					"pattern": "staging.publicfutureinitiative.org",
+					"custom_domain": true
+				}
+			]
+		}
+	}
+}

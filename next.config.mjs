@@ -43,3 +43,6 @@ const nextConfig = {
 
 export default nextConfig
 
+if (process.env.NODE_ENV === 'development' && !process.env.JEST_WORKER_ID) {
+  import('@opennextjs/cloudflare').then((m) => m.initOpenNextCloudflareForDev())
+}
