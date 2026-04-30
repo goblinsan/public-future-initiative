@@ -111,3 +111,20 @@ export interface TimelineEvent {
   tags?: string[]
   citations?: Citation[]
 }
+
+export interface DebatePosition {
+  label: string
+  summary: string
+  arguments: string[]
+}
+
+export interface Debate extends ContentBase {
+  type: 'debate'
+  topic: string
+  question: string
+  positions: DebatePosition[]
+  relatedPolicy?: string[]
+  relatedExplainers?: string[]
+  relatedPilots?: string[]
+  citations?: Citation[]
+}

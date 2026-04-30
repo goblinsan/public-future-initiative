@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getAllContent } from '@/lib/content'
-import type { Explainer, PolicyOption, Pilot, Action, GlossaryEntry } from '@/lib/types/content'
+import type { Explainer, PolicyOption, Pilot, Action, GlossaryEntry, Debate } from '@/lib/types/content'
 import { siteMetadata } from '@/lib/metadata'
 
 const base = siteMetadata.siteUrl
@@ -69,5 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
   }))
 
-  return [...staticRoutes, ...explainers, ...policies, ...pilots, ...actions, ...glossary]
+  const debates = getAllContent<Debate>('debate').map(({ slug, frontmatter }) => ({
+    url: `${base}/debate/${slug}`,
+    lastModified: frontmatter.updatedAt ?? frontmatter.publishedAt,
+    priority: 0.8,
+    changeFrequency: 'monthly' as const,
+  }))
+
+  return [...staticRoutes, ...explainers, ...policies, ...pilots, ...actions, ...glossary, ...debates]
 }

@@ -8,19 +8,19 @@ import NewsletterSignup from '@/components/ui/NewsletterSignup'
 
 const featuredDebates = [
   {
-    href: '/policy',
+    href: '/debate/housing-zoning-reform',
     topic: 'Housing',
     question: 'Can zoning reform actually solve the housing crisis — or does it miss the root cause?',
     polarities: ['Build more market-rate housing', 'Prioritise social housing'],
   },
   {
-    href: '/policy',
+    href: '/debate/carbon-pricing-net-zero',
     topic: 'Climate',
     question: 'Is carbon pricing the most effective lever for reaching net zero by 2050?',
     polarities: ['Yes — price signals change behavior', 'No — regulation and investment work better'],
   },
   {
-    href: '/policy',
+    href: '/debate/single-payer-healthcare',
     topic: 'Healthcare',
     question: 'Does a single-payer system deliver better outcomes at lower cost?',
     polarities: ['Evidence says yes', 'Depends entirely on implementation'],

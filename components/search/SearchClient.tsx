@@ -11,9 +11,10 @@ const typeLabels: Record<SearchResult['type'], { label: string; color: string }>
   pilot: { label: 'Pilot', color: 'bg-emerald-50 text-emerald-800' },
   action: { label: 'Action', color: 'bg-purple-50 text-purple-800' },
   glossary: { label: 'Glossary', color: 'bg-slate-100 text-slate-700' },
+  debate: { label: 'Debate', color: 'bg-rose-50 text-rose-800' },
 }
 
-const TYPE_FILTERS = ['all', 'explainer', 'policy', 'pilot', 'action', 'glossary'] as const
+const TYPE_FILTERS = ['all', 'explainer', 'policy', 'pilot', 'action', 'glossary', 'debate'] as const
 type TypeFilter = (typeof TYPE_FILTERS)[number]
 
 function scoreResult(result: SearchResult, query: string): number {
@@ -241,6 +242,9 @@ export default function SearchClient() {
                 </Link>
                 <Link href="/glossary" className="btn-outline text-body-sm px-4 py-2">
                   Browse Glossary
+                </Link>
+                <Link href="/debate" className="btn-outline text-body-sm px-4 py-2">
+                  Browse Debates
                 </Link>
               </div>
             </div>

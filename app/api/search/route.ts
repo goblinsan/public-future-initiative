@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { getAllContent } from '@/lib/content'
-import type { Explainer, PolicyOption, Pilot, Action, GlossaryEntry } from '@/lib/types/content'
+import type { Explainer, PolicyOption, Pilot, Action, GlossaryEntry, Debate } from '@/lib/types/content'
 
 export interface SearchResult {
   slug: string
   title: string
   description: string
-  type: 'explainer' | 'policy' | 'pilot' | 'action' | 'glossary'
+  type: 'explainer' | 'policy' | 'pilot' | 'action' | 'glossary' | 'debate'
   href: string
   tags?: string[]
   publishedAt?: string
@@ -75,6 +75,19 @@ export async function GET() {
       description: frontmatter.definition,
       type: 'glossary',
       href: `/glossary/${slug}`,
+      publishedAt: frontmatter.publishedAt,
+    })
+  }
+
+  const debates = getAllContent<Debate>('debate')
+  for (const { slug, frontmatter } of debates) {
+    results.push({
+      slug,
+      title: frontmatter.title,
+      description: frontmatter.description ?? frontmatter.question ?? '',
+      type: 'debate',
+      href: `/debate/${slug}`,
+      tags: frontmatter.tags,
       publishedAt: frontmatter.publishedAt,
     })
   }
